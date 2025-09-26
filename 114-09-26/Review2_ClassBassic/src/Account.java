@@ -35,16 +35,36 @@ public class Account {
     }
 
     /**
+     * 驗證金額輸入的通用方法
+     * @param value 初始金額
+     * @param min 最小值
+     * @param max 最大值（若無上限則傳入Double.MAX_VALUE）
+     * @param errorMsg 錯誤提示訊息
+     * @return 驗證後的金額
+     * @throws IllegalArgumentException 若三次輸入皆不合法
+     */
+    private double validateAmount(double value, double min, double max, String errorMsg) {
+        int attempts = 0;
+        while ((value < min || value > max) && attempts < 3) {
+            System.out.println(errorMsg + " 請重新輸入：");
+            java.util.Scanner scanner = new java.util.Scanner(System.in);
+            value = scanner.nextDouble();
+            attempts++;
+        }
+        if (value >= min && value <= max) {
+            return value;
+        } else {
+            throw new IllegalArgumentException(errorMsg);
+        }
+    }
+
+    /**
      * 設定帳戶餘額
      * @param balance 欲設定的帳戶餘額，必須大於等於0
      * @throws IllegalArgumentException 如果餘額小於0則拋出例外
      */
-    public void setBalance(double balance){
-        if (balance >= 0) {
-            this.balance = balance;  // 設定帳戶餘額
-        } else {
-            throw new IllegalArgumentException("帳戶餘額必須為正數");
-        }
+    public void setBalance(double balance) {
+        this.balance = validateAmount(balance, 0, Double.MAX_VALUE, "帳戶餘額必須為正數");
     }
 
     /**
@@ -61,23 +81,17 @@ public class Account {
      * @throws IllegalArgumentException 如果存款金額小於等於0
      */
     public void deposit(double amount) {
-        if (amount > 0) {
-            balance += amount; // 增加帳戶餘額
-        } else {
-            throw new IllegalArgumentException("存款金額必須為正數");
-        }
+        double validAmount = validateAmount(amount, 0.01, Double.MAX_VALUE, "存款金額必須為正數");
+        balance += validAmount;
     }
 
     /**
-     * 提款方法，從帳戶提取指定金額
+        while (amount <= 0 && attempts < 2) {
      * @param amount 提款金額，必須大於0且小於等於餘額
      * @throws IllegalArgumentException 如果提款金額不合法
      */
     public void withdraw(double amount) {
-        if (amount > 0 && amount <= balance) {
-            balance -= amount; // 減少帳戶餘額
-        } else {
-            throw new IllegalArgumentException("提款金額不合法");
-        }
+        double validAmount = validateAmount(amount, 0.01, balance, "提款金額不合法");
+        balance -= validAmount;
     }
 }
