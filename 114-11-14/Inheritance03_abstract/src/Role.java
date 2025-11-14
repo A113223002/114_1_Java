@@ -1,4 +1,4 @@
-public class Role  {
+public abstract class Role  {
     // 角色名稱
     private String name;
     // 生命值
@@ -36,6 +36,10 @@ public class Role  {
     public boolean isAlive() {
         return health > 0;
     }
+
+    // 抽象方法：攻擊對手
+    public abstract void attack(Role opponent);
+    public abstract void heal(Role ally);
 
     @Override
     public String toString() {
