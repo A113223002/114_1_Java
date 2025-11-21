@@ -27,8 +27,23 @@ public class Magician extends Role{
         System.out.println(this.getName() + " 治療 " + ally.getName() + " 回復 " + healPower + " 點生命值。" + ally);
     }
 
+    // 顯示特殊技能
+    @Override
+    public void showSpecialSkill() {
+        System.out.println("╔═════════════════════════════╗");
+        System.out.printf("║ %s 的特殊技能        ║%n", this.getName());
+        System.out.println("╠═════════════════════════════╣");
+        System.out.println("║ 技能名稱：元素爆發          ║");
+        System.out.println("║ 技能描述：召喚強大魔法攻擊  ║");
+        System.out.println("║ 技能效果：範圍魔法傷害      ║");
+        System.out.println("║ 額外效果：恢復自身魔力      ║");
+        System.out.println("╚═════════════════════════════╝");
+        System.out.println();
+    }
+
     @Override
     public String toString() {
         return super.toString() + ", 治癒力: " + healPower;
     }
+
 }

@@ -23,13 +23,19 @@ public abstract class Role {
         return health;
     }
 
+    // 設定生命值
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     // 取得攻擊力
     public int getAttackPower() {
         return attackPower;
     }
-    // 設定生命值
-    public void setHealth(int health) {
-        this.health = health;
+
+    // 設定攻擊力
+    public void setAttackPower(int attackPower) {
+        this.attackPower = attackPower;
     }
 
     // 檢查角色是否存活
@@ -37,11 +43,19 @@ public abstract class Role {
         return health > 0;
     }
 
+    // 每個角色需實作的行為
     public abstract void attack(Role opponent);
-
+    /**
+     * 展示角色的特殊技能
+     * 為什麼設計成抽象方法？
+     * 1. 每個角色都有特殊技能（共同規格）
+     * 2. 但每個角色的技能內容都不同（個別實作）
+     * 3. 我們無法在 Role 類別中提供一個「適合所有角色」的預設實作
+     */
+    public abstract void showSpecialSkill();
 
     @Override
     public String toString() {
-        return "角色名稱: " + name + ", 生命值: " + health;
+        return "角色名稱: " + name + ", 生命值: " + health + ", 攻擊力: " + attackPower;
     }
 }

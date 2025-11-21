@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/src/Role.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/Role.java" />
+              <option name="originalContent" value="public abstract class Role {&#10;    // 角色名稱&#10;    private String name;&#10;    // 生命值&#10;    private int health;&#10;    // 攻擊力&#10;    private int attackPower;&#10;&#10;    // 建構子：初始化角色的名稱、生命值和攻擊力&#10;    public Role(String name, int health, int attackPower) {&#10;        this.name = name;&#10;        this.health = health;&#10;        this.attackPower = attackPower;&#10;    }&#10;&#10;    // 取得角色名稱&#10;    public String getName() {&#10;        return name;&#10;    }&#10;&#10;    // 取得生命值&#10;    public int getHealth() {&#10;        return health;&#10;    }&#10;&#10;    // 設定生命值&#10;    public void setHealth(int health) {&#10;        this.health = health;&#10;    }&#10;&#10;    // 取得攻擊力&#10;    public int getAttackPower() {&#10;        return attackPower;&#10;    }&#10;&#10;    // 設定攻擊力&#10;    public void setAttackPower(int attackPower) {&#10;        this.attackPower = attackPower;&#10;    }&#10;&#10;    // 檢查角色是否存活&#10;    public boolean isAlive() {&#10;        return health &gt; 0;&#10;    }&#10;&#10;    // 每個角色需實作的行為&#10;    public abstract void attack(Role opponent);&#10;    /**&#10;     * 展示角色的特殊技能&#10;     * 為什麼設計成抽象方法？&#10;     * 1. 每個角色都有特殊技能（共同規格）&#10;     * 2. 但每個角色的技能內容都不同（個別實作）&#10;     * 3. 我們無法在 Role 類別中提供一個「適合所有角色」的預設實作&#10;     */&#10;    public abstract void showSpecialSkill();&#10;&#10;    @Override&#10;    public String toString() {&#10;        return &quot;角色名稱: &quot; + name + &quot;, 生命值: &quot; + health + &quot;, 攻擊力: &quot; + attackPower;&#10;    }&#10;}" />
+              <option name="updatedContent" value="public abstract class Role {&#10;    // 角色名稱&#10;    private String name;&#10;    // 生命值&#10;    private int health;&#10;    // 攻擊力&#10;    private int attackPower;&#10;&#10;    // 建構子：初始化角色的名稱、生命值和攻擊力&#10;    public Role(String name, int health, int attackPower) {&#10;        this.name = name;&#10;        this.health = health;&#10;        this.attackPower = attackPower;&#10;    }&#10;&#10;    // 取得角色名稱&#10;    public String getName() {&#10;        return name;&#10;    }&#10;&#10;    // 取得生命值&#10;    public int getHealth() {&#10;        return health;&#10;    }&#10;&#10;    // 設定生命值&#10;    public void setHealth(int health) {&#10;        this.health = health;&#10;    }&#10;&#10;    // 取得攻擊力&#10;    public int getAttackPower() {&#10;        return attackPower;&#10;    }&#10;&#10;    // 設定攻擊力&#10;    public void setAttackPower(int attackPower) {&#10;        this.attackPower = attackPower;&#10;    }&#10;&#10;    // 檢查角色是否存活&#10;    public boolean isAlive() {&#10;        return health &gt; 0;&#10;    }&#10;&#10;    // 每個角色需實作的行為&#10;    public abstract void attack(Role opponent);&#10;    /**&#10;     * 展示角色的特殊技能&#10;     * 為什麼設計成抽象方法？&#10;     * 1. 每個角色都有特殊技能（共同規格）&#10;     * 2. 但每個角色的技能內容都不同（個別實作）&#10;     * 3. 我們無法在 Role 類別中提供一個「適合所有角色」的預設實作&#10;     */&#10;    public abstract void showSpecialSkill();&#10;&#10;    @Override&#10;    public String toString() {&#10;        return &quot;角色名稱: &quot; + name + &quot;, 生命值: &quot; + health + &quot;, 攻擊力: &quot; + attackPower;&#10;    }&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

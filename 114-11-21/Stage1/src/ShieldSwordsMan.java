@@ -23,4 +23,18 @@ public class ShieldSwordsMan extends SwordsMan{
         this.setHealth(this.getHealth() + defenseCapacity);
         System.out.println(this.getName() + " 使用盾牌防禦，恢復 " + defenseCapacity + " 點生命值。" + this);
     }
+
+    // 顯示特殊技能
+    @Override
+    public void showSpecialSkill() {
+        System.out.println("╔═════════════════════════════╗");
+        System.out.printf("║ %s 的特殊技能      ║%n", this.getName());
+        System.out.println("╠═════════════════════════════╣");
+        System.out.println("║ 技能名稱：盾牌猛擊          ║");
+        System.out.println("║ 技能描述：使用盾牌撞擊敵人  ║");
+        System.out.println("║ 技能效果：造成傷害並暈眩    ║");
+        System.out.printf("║ 防禦加成：+%d 防禦力           ║%n", this.defenseCapacity);
+        System.out.println("╚═════════════════════════════╝");
+        System.out.println();
+    }
 }

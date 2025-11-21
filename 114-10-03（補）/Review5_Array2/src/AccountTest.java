@@ -1,7 +1,5 @@
-import java.util.Scanner;
-
 public class AccountTest {
-    private static int customerCount;  //客戶數量
+    private static int customerCount; // 客戶數量
     public static void main(String[] args) {
         Account[] customers = new Account[10]; // 儲存客戶帳戶的陣列
         Account acc1 = new Account("A001", "Alice", 5000);
@@ -9,52 +7,20 @@ public class AccountTest {
         Account acc2 = new Account("A002", "Bob", 3000);
         addCustomer(customers, acc2);
         Account acc3 = new Account("A003", "Charlie", -100);
-        addCustomer(customers, acc3);
+        addCustomer(customers,  acc3);
 
-        operation(customers);
-        //顯示所有客戶帳戶資訊
-//        System.out.println("\n所有客戶帳戶資訊:");
-//        printCustomerAccounts(customers);
-    }
-
-    public static void operation(Account[] customers) {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            menu();
-            System.out.print("請選擇功能(1～3)： ");
-            int choice = scanner.nextInt();
-            scanner.nextInt();  //清除換行符號
-            switch (choice) {
-                case 1:
-                    System.out.print("請輸入帳戶號碼： ");
-                    String accNum = scanner.nextLine();
-                    System.out.print("輸入持有人名稱： ");
-                    String ownerName = scanner.nextLine();
-                    System.out.print("輸入初始餘額： ");
-                    double initialBalance = scanner.nextDouble();
-                    Account newaccount = new Account(accNum, ownerName, initialBalance);
-                    addCustomer(customers, new Account);
-                    break;
-                case 2:
-                    System.out.println("\n所有客戶帳戶資訊： ");
-                    printCustomerAccounts(customers);
-                    break;
-                case 3:
-                    System.out.println("離開系統，謝謝使用！");
-                    return;
-                default:
-                    System.out.println("無效的選擇，請重新輸入！");
-            }
-        }
+        // 顯示所有客戶帳戶資訊
+        System.out.println("\n所有位客戶帳戶資訊:");
+        printCustomerAccounts(customers);
     }
 
     public static void addCustomer(Account[] customers, Account newAccount) {
-        if (customerCount < customers.length) {
+        if ( customerCount < customers.length) {
             customers[customerCount] = newAccount;
             customerCount++;
             System.out.println("新增客戶成功: " + newAccount.getAccountNumber());
             return;
-            }
+        }
         System.out.println("無法新增客戶，客戶數量已達上限");
     }
 
@@ -65,15 +31,8 @@ public class AccountTest {
     }
 
     public static void printCustomerInfo(Account account) {
-        System.out.printf("帳戶號碼： " + account.getAccountNumber() +
-                ", 持有者: " + account.getOwnerName() +
+        System.out.println("帳戶號碼: " + account.getAccountNumber() +
+                ", 持有人: " + account.getOwnerName() +
                 ", 餘額: " + account.getBalance());
-    }
-    //功能選單 (1)新增客戶 (2)列印指定客戶帳戶資訊 (3) 顯示所有客戶帳戶資訊 (4)離開
-    public static void menu(){
-        System.out.println("功能選單");
-        System.out.println("1. 新增客戶");
-        System.out.println("2. 顯示所有客戶帳戶資訊");
-        System.out.println("3. 離開");
     }
 }
