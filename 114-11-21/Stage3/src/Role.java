@@ -55,11 +55,6 @@ public abstract class Role {
         return prev - newHp; // 實際造成的傷害
     }
 
-    // 兼容原有程式碼：提供 takeDamage 作為 receiveDamage 的別名
-    public int takeDamage(int damage) {
-        return receiveDamage(damage);
-    }
-
     // 每個角色需實作的行為：攻擊另一個角色
     public abstract void attack(Role opponent);
 
@@ -75,9 +70,9 @@ public abstract class Role {
     public abstract void prepareBattle();
 
     /**
-    @SuppressWarnings("unused")
-    @SuppressWarnings("unused")
-     * 戰後行為：在回合結束時角色可以做恢復或狀態處理（由子類實作）
+     @SuppressWarnings("unused")
+     @SuppressWarnings("unused")
+      * 戰後行為：在回合結束時角色可以做恢復或狀態處理（由子類實作）
      */
     public abstract void afterBattle();
 

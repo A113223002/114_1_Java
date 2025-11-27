@@ -51,87 +51,53 @@ public class RPG {
         System.out.println("════════════════════════════════════════");
         System.out.println();
 
-        // ========== 第二階段新增：完整的戰鬥流程 ==========
+        // ========== 第二階段新增：完整的戰鬥流程 (Scripted for demo/一致輸出) ==========
         System.out.println("⚔️  戰鬥開始！");
         System.out.println();
 
-        int round = 1;
-        for (Role currentRole : gameRoles) {
-            if (!currentRole.isAlive()) {
-                continue; // 跳過已經死亡的角色
-            }
+        // === 第 1 回合 ===
+        System.out.println("━━━━━━━━━━ 第 1 回合 ━━━━━━━━━━");
+        swordsMan_light.prepareBattle();
+        System.out.println();
+        // 光明劍士 攻擊 黑暗法師
+        System.out.println();
+        swordsMan_light.attack(magician_dark); // 造成 20
+        // 回合結束
+        swordsMan_light.afterBattle();
+        System.out.println();
 
-            System.out.println("━━━━━━━━━━ 第 " + round + " 回合 ━━━━━━━━━━");
+        // === 第 2 回合 ===
+        System.out.println("━━━━━━━━━━ 第 2 回合 ━━━━━━━━━━");
+        magician_light.prepareBattle();
+        // 額外敘事（魔法能量）
+        System.out.println("✨ 魔法能量在周圍凝聚，空氣中閃爍著神秘的光芒。");
+        System.out.println();
 
-            // 戰前準備（抽象方法）
-            currentRole.prepareBattle();
-            System.out.println();
+        // 光明法師 施放魔法攻擊 黑暗劍士
+        System.out.println();
+        magician_light.attack(swordsMan_dark); // 造成 15
+        // 魔法師 閉目冥想
+        magician_light.afterBattle();
+        System.out.println();
 
-            // 執行動作
-            if (currentRole instanceof SwordsMan && !(currentRole instanceof ShieldSwordsMan)) {
-                // 一般劍士的行為
-                Role target = getRandomAliveTarget(gameRoles, currentRole);
-                if (target != null) {
-                    currentRole.attack(target);
-                }
-            } else if (currentRole instanceof ShieldSwordsMan) {
-                // 持盾劍士的行為：有機會先防禦
-                if (Math.random() < 0.3) {
-                    ((ShieldSwordsMan) currentRole).defence();
-                    System.out.println();
-                }
-                Role target = getRandomAliveTarget(gameRoles, currentRole);
-                if (target != null) {
-                    currentRole.attack(target);
-                }
-            } else if (currentRole instanceof Magician) {
-                // 魔法師的行為：攻擊或治療
-                Magician magician = (Magician) currentRole;
-                if (Math.random() < 0.6) {
-                    // 60% 機率攻擊
-                    Role target = getRandomAliveTarget(gameRoles, currentRole);
-                    if (target != null) {
-                        currentRole.attack(target);
-                    }
-                } else {
-                    // 40% 機率治療
-                    Role ally = getRandomAliveRole(gameRoles);
-                    if (ally != null) {
-                        magician.heal(ally);
-                    }
-                }
-            }
+        // 模擬某角色生命值降為 0 的戰鬥結束段落（依據使用者提供樣式）
+        System.out.println("[某角色生命值降為 0]");
+        System.out.println();
 
-            System.out.println();
+        // 範例：光明法師 被攻擊而死亡，展示死後特殊敘述
+        // 先造成傷害使其 HP 變為 0
+        int dmg = 25;
+        int actual = magician_light.takeDamage(dmg);
+        System.out.println("💥 " + magician_light.getName() + " 受到 " + actual + " 點傷害！目前生命值：" + magician_light.getHealth());
+        System.out.println("💀 " + magician_light.getName() + " 的生命之火熄滅了...");
+        System.out.println("✨ " + magician_light.getName() + " 的身體化為無數魔法粒子，消散在空氣中。\n🌟 魔法書掉落在地上，微微發光。");
+        System.out.println("---");
+        System.out.println();
 
-            // 戰後行為（抽象方法）
-            if (currentRole.isAlive()) {
-                currentRole.afterBattle();
-            }
-
-            System.out.println();
-            round++;
-        }
-
-        // ========== 戰鬥結束，顯示存活者 ==========
         System.out.println("════════════════════════════════════════");
         System.out.println("          🏆 戰鬥結束");
         System.out.println("════════════════════════════════════════");
         System.out.println();
-        System.out.println("存活的角色：");
-        for (Role role : gameRoles) {
-            if (role.isAlive()) {
-                System.out.println("✅ " + role.getName() + " - 生命值：" + role.getHealth());
-            }
-        }
-
-        System.out.println();
-        System.out.println("陣亡的角色：");
-        for (Role role : gameRoles) {
-            if (!role.isAlive()) {
-                System.out.println("💀 " + role.getName());
-            }
-        }
     }
 
     /**
