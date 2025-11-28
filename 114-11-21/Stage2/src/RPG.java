@@ -2,135 +2,171 @@ public class RPG {
     public static void main(String[] args) {
         System.out.println("════════════════════════════════════════");
         System.out.println("        🎮 RPG 遊戲 - 第二階段");
-        System.out.println("   展示：具體方法 + 抽象方法的結合");
+        System.out.println("   展示：具體方法與抽象方法結合");
         System.out.println("════════════════════════════════════════");
         System.out.println();
 
-        // 建立角色
+        // ==========================================
+        // 1. 建立角色
+        // ==========================================
+        System.out.println("【創建角色】");
+        System.out.println("─────────────────────────────────────");
+
         SwordsMan swordsMan_light = new SwordsMan("光明劍士", 100, 20);
+        System.out.println("✅ " + swordsMan_light);
+
         SwordsMan swordsMan_dark = new SwordsMan("黑暗劍士", 100, 25);
+        System.out.println("✅ " + swordsMan_dark);
+
         Magician magician_light = new Magician("光明法師", 80, 15, 10);
+        System.out.println("✅ " + magician_light);
+
         Magician magician_dark = new Magician("黑暗法師", 80, 20, 5);
+        System.out.println("✅ " + magician_dark);
+
         ShieldSwordsMan shieldSwordsMan = new ShieldSwordsMan("持盾劍士", 120, 18, 8);
+        System.out.println("✅ " + shieldSwordsMan);
 
-        Role[] gameRoles = {swordsMan_light, swordsMan_dark, magician_light, magician_dark, shieldSwordsMan};
+        System.out.println();
 
-        // ========== 展示所有角色的特殊技能 ==========
+        // ==========================================
+        // 2. 將所有角色放入陣列
+        // ==========================================
+        Role[] gameRoles = {swordsMan_light, swordsMan_dark, magician_light,
+                magician_dark, shieldSwordsMan};
+
+        // ==========================================
+        // 3. 顯示所有角色的特殊技能
+        // ==========================================
         System.out.println("════════════════════════════════════════");
-        System.out.println("          📋 角色特殊技能展示");
+        System.out.println("          ⚔️  特殊技能展示");
         System.out.println("════════════════════════════════════════");
         System.out.println();
 
         for (Role role : gameRoles) {
             role.showSpecialSkill();
-            // 呼叫某些 getter / 方法以避免 IDE 顯示 "未使用" 的警告；呼叫後還原狀態以避免副作用
-            if (role instanceof Magician) {
-                Magician m = (Magician) role;
-                // 讀取治癒力（示範 getter 使用）
-                int healP = m.getHealPower();
-                System.out.println("（提示）" + m.getName() + " 的治癒力: " + healP);
-
-                // 呼叫 heal 並還原生命值以避免改變遊戲初始狀態
-                int before = m.getHealth();
-                m.heal(m); // 自我治療
-                m.setHealth(before);
-            } else if (role instanceof ShieldSwordsMan) {
-                ShieldSwordsMan s = (ShieldSwordsMan) role;
-                // 讀取防禦力（示範 getter 使用）
-                int def = s.getDefenseCapacity();
-                System.out.println("（提示）" + s.getName() + " 的防禦力: " + def);
-
-                // 呼叫 defence 並還原生命值以避免改變遊戲初始狀態
-                int before = s.getHealth();
-                s.defence();
-                s.setHealth(before);
-            }
             System.out.println();
         }
 
+        // ==========================================
+        // 4. 戰鬥前準備
+        // ==========================================
+        System.out.println("════════════════════════════════════════");
+        System.out.println("          🛡️  戰鬥前準備");
         System.out.println("════════════════════════════════════════");
         System.out.println();
 
-        // ========== 第二階段新增：完整的戰鬥流程 (Scripted for demo/一致輸出) ==========
-        System.out.println("⚔️  戰鬥開始！");
-        System.out.println();
-
-        // === 第 1 回合 ===
-        System.out.println("━━━━━━━━━━ 第 1 回合 ━━━━━━━━━━");
-        swordsMan_light.prepareBattle();
-        System.out.println();
-        // 光明劍士 攻擊 黑暗法師
-        System.out.println();
-        swordsMan_light.attack(magician_dark); // 造成 20
-        // 回合結束
-        swordsMan_light.afterBattle();
-        System.out.println();
-
-        // === 第 2 回合 ===
-        System.out.println("━━━━━━━━━━ 第 2 回合 ━━━━━━━━━━");
-        magician_light.prepareBattle();
-        // 額外敘事（魔法能量）
-        System.out.println("✨ 魔法能量在周圍凝聚，空氣中閃爍著神秘的光芒。");
-        System.out.println();
-
-        // 光明法師 施放魔法攻擊 黑暗劍士
-        System.out.println();
-        magician_light.attack(swordsMan_dark); // 造成 15
-        // 魔法師 閉目冥想
-        magician_light.afterBattle();
-        System.out.println();
-
-        // 模擬某角色生命值降為 0 的戰鬥結束段落（依據使用者提供樣式）
-        System.out.println("[某角色生命值降為 0]");
-        System.out.println();
-
-        // 範例：光明法師 被攻擊而死亡，展示死後特殊敘述
-        // 先造成傷害使其 HP 變為 0
-        int dmg = 25;
-        int actual = magician_light.takeDamage(dmg);
-        System.out.println("💥 " + magician_light.getName() + " 受到 " + actual + " 點傷害！目前生命值：" + magician_light.getHealth());
-        System.out.println("💀 " + magician_light.getName() + " 的生命之火熄滅了...");
-        System.out.println("✨ " + magician_light.getName() + " 的身體化為無數魔法粒子，消散在空氣中。\n🌟 魔法書掉落在地上，微微發光。");
-        System.out.println("---");
-        System.out.println();
-
-        System.out.println("════════════════════════════════════════");
-        System.out.println("          🏆 戰鬥結束");
-        System.out.println("════════════════════════════════════════");
-        System.out.println();
-    }
-
-    /**
-     * 隨機選擇一個存活的目標（排除自己）
-     */
-    private static Role getRandomAliveTarget(Role[] roles, Role self) {
-        Role[] aliveRoles = new Role[roles.length];
-        int count = 0;
-
-        for (Role role : roles) {
-            if (role != self && role.isAlive()) {
-                aliveRoles[count++] = role;
-            }
+        for (Role role : gameRoles) {
+            role.prepareBattle();
+            System.out.println();
         }
 
-        if (count == 0) return null;
-        return aliveRoles[(int) (Math.random() * count)];
-    }
+        // ==========================================
+        // 5. 戰鬥測試：takeDamage 與 onDeath
+        // ==========================================
+        System.out.println("════════════════════════════════════════");
+        System.out.println("        ⚔️  戰鬥測試 (受傷與死亡)");
+        System.out.println("════════════════════════════════════════");
+        System.out.println();
 
-    /**
-     * 隨機選擇一個存活的角色（包括自己）
-     */
-    private static Role getRandomAliveRole(Role[] roles) {
-        Role[] aliveRoles = new Role[roles.length];
-        int count = 0;
+        System.out.println("【測試 1：受傷但未死亡】");
+        System.out.println("光明劍士受到 30 點傷害：");
+        swordsMan_light.takeDamage(30);
+        System.out.println("目前狀態：" + swordsMan_light);
+        System.out.println();
 
-        for (Role role : roles) {
+        System.out.println("【測試 2：受到致命傷害】");
+        System.out.println("光明劍士受到 80 點傷害（致命）：");
+        swordsMan_light.takeDamage(80);
+        System.out.println();
+
+        // ==========================================
+        // 6. 角色互相攻擊測試
+        // ==========================================
+        System.out.println("════════════════════════════════════════");
+        System.out.println("          ⚔️  角色互相攻擊");
+        System.out.println("════════════════════════════════════════");
+        System.out.println();
+
+        System.out.println("【戰鬥 1：黑暗劍士 vs 光明法師】");
+        swordsMan_dark.attack(magician_light);
+        System.out.println();
+
+        System.out.println("【戰鬥 2：光明法師反擊】");
+        magician_light.attack(swordsMan_dark);
+        System.out.println();
+
+        // ==========================================
+        // 7. 魔法師治療測試
+        // ==========================================
+        System.out.println("════════════════════════════════════════");
+        System.out.println("          💚 治療測試");
+        System.out.println("════════════════════════════════════════");
+        System.out.println();
+
+        System.out.println("【光明法師治療黑暗劍士】");
+        magician_light.heal(swordsMan_dark);
+        System.out.println();
+
+        // ==========================================
+        // 8. 持盾劍士特殊能力測試
+        // ==========================================
+        System.out.println("════════════════════════════════════════");
+        System.out.println("        🛡️  持盾劍士防禦測試");
+        System.out.println("════════════════════════════════════════");
+        System.out.println();
+
+        System.out.println("【持盾劍士受到傷害】");
+        shieldSwordsMan.takeDamage(25);
+        System.out.println();
+
+        System.out.println("【持盾劍士使用防禦技能】");
+        shieldSwordsMan.defence();
+        System.out.println();
+
+        // ==========================================
+        // 9. 戰鬥後行為
+        // ==========================================
+        System.out.println("════════════════════════════════════════");
+        System.out.println("          🌙 戰鬥結束");
+        System.out.println("════════════════════════════════════════");
+        System.out.println();
+
+        for (Role role : gameRoles) {
             if (role.isAlive()) {
-                aliveRoles[count++] = role;
+                role.afterBattle();
+                System.out.println();
             }
         }
 
-        if (count == 0) return null;
-        return aliveRoles[(int) (Math.random() * count)];
+        // ==========================================
+        // 10. 最終狀態報告
+        // ==========================================
+        System.out.println("════════════════════════════════════════");
+        System.out.println("          📊 最終狀態報告");
+        System.out.println("════════════════════════════════════════");
+        System.out.println();
+
+        int aliveCount = 0;
+        int deadCount = 0;
+
+        for (Role role : gameRoles) {
+            String status = role.isAlive() ? "✅ 存活" : "💀 陣亡";
+            System.out.println(status + " | " + role);
+
+            if (role.isAlive()) {
+                aliveCount++;
+            } else {
+                deadCount++;
+            }
+        }
+
+        System.out.println();
+        System.out.println("─────────────────────────────────────");
+        System.out.println("存活角色：" + aliveCount + " 名");
+        System.out.println("陣亡角色：" + deadCount + " 名");
+        System.out.println("─────────────────────────────────────");
+        System.out.println();
+        System.out.println("🎮 遊戲結束！");
     }
 }
