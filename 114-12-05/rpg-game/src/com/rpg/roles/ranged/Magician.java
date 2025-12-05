@@ -12,6 +12,12 @@
  * 2. 介面讓治療能力標準化
  * 3. 不同類別可以實作相同介面但有不同實作
  */
+
+package com.rpg.roles.ranged;
+import com.rpg.core.Role;
+import com.rpg.interfaces.Healable;
+
+
 public class Magician extends RangedRole implements Healable {  // ← 實作 Healable 介面
     private int healPower;
 

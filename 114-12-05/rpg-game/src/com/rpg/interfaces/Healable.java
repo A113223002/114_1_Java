@@ -16,6 +16,11 @@
  * - 多重實作：一個類別可以同時實作 Healable 和 Defendable
  * - 清晰的契約：明確定義「可治療」的行為
  */
+
+package com.rpg.interfaces;
+import com.rpg.core.Role;
+
+
 public interface Healable {
 
     /**

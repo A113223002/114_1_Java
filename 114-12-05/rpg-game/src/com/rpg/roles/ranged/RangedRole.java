@@ -6,6 +6,10 @@
  * 2. 可以統一處理遠程角色的共通邏輯（例如：射程檢查）
  * 3. 避免在 Role 加入只有遠程角色才需要的屬性
  */
+
+package com.rpg.roles.ranged;
+import com.rpg.core.Role;
+
 public abstract class RangedRole extends Role {
     // ========== 新增屬性 ==========
     private int range;        // 攻擊範圍：遠程角色特有

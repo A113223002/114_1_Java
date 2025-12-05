@@ -21,6 +21,13 @@
  * - 程式碼清晰，職責明確
  * - 符合「組合優於繼承」的原則
  */
+
+package com.rpg.roles.melee;
+import com.rpg.core.Role;
+import com.rpg.interfaces.Defendable;
+import com.rpg.interfaces.Healable;
+
+
 public class Paladin extends MeleeRole implements Defendable, Healable {  // ← 同時實作兩個介面
     private int defenseCapacity;  // 防禦力
     private int healPower;        // 治療力

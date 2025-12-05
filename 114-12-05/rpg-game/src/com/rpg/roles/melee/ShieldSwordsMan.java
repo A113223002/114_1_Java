@@ -12,6 +12,12 @@
  * 2. 介面讓類別獲得額外的能力（防禦）
  * 3. 介面提供統一的防禦行為規範
  */
+
+package com.rpg.roles.melee;
+import com.rpg.core.Role;
+import com.rpg.interfaces.Defendable;
+
+
 public class ShieldSwordsMan extends SwordsMan implements Defendable {  // ← 實作 Defendable 介面
     private int defenseCapacity;
 

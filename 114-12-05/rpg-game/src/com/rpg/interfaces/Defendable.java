@@ -14,6 +14,9 @@
  * - 介面：定義「能力」，可以實作多個
  * - 抽象類別：定義「本質」，只能繼承一個
  */
+
+package com.rpg.interfaces;
+
 public interface Defendable {
 
     /**

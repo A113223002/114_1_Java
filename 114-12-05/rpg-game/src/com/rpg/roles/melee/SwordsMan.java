@@ -1,3 +1,6 @@
+package com.rpg.roles.melee;
+import com.rpg.core.Role;
+
 public class SwordsMan extends MeleeRole {  // ← 改為繼承 MeleeRole
 
     // ========== 建構子變更 ==========

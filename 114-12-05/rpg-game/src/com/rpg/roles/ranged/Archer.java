@@ -6,6 +6,10 @@
  * - 與魔法師同為遠程角色，但攻擊方式不同
  * - 使用箭矢而非魔法
  */
+
+package com.rpg.roles.ranged;
+import com.rpg.core.Role;
+
 public class Archer extends RangedRole {
     // ========== 特有屬性 ==========
     private int arrowCount;    // 箭矢數量

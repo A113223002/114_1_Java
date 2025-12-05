@@ -6,6 +6,15 @@
  * 2. 可以統一處理近戰角色的共通邏輯（例如：防禦計算）
  * 3. 避免在 Role 加入只有近戰角色才需要的屬性
  */
+
+package com.rpg.roles.melee;
+import com.rpg.core.Role;
+
+
+import com.rpg.core.Role;
+import com.rpg.interfaces.Defendable;
+import com.rpg.interfaces.Healable;
+
 public abstract class MeleeRole extends Role {
     // ========== 新增屬性 ==========
     private int armor;  // 護甲值：近戰角色特有
